@@ -1,0 +1,22 @@
+name: C++ CI (01-pcap)
+
+on:
+  push:
+    paths:
+      - 'projects/01-pcap/**'
+      
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y cmake g++ libpcap-dev
+      - name: Build project (parallel)
+        run: |
+          cmake -S . -B build
+          cmake --build build --parallel $(nproc) --target 01-pcap 01-pcap-tests
+      - name: Run doctest tests with CTest
+        run: |
+          cd build
+          ctest --output-on-failure

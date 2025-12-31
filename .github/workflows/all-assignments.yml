@@ -1,0 +1,26 @@
+name: C++ CI (all-assignments)
+
+on:
+  push:
+    paths:
+      - 'projects/**'
+      - '.github/workflows/all-assignments.yml'
+  pull_request:
+    paths:
+      - 'projects/**'
+      - '.github/workflows/all-assignments.yml'
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y cmake g++ libpcap-dev
+      - name: Build all projects
+        run: |
+          cmake -S . -B build
+          cmake --build build --parallel $(nproc)
+      - name: Run all tests
+        run: |
+          find build/projects -type f -executable -name '*-tests*' -exec {} \;

@@ -58,7 +58,7 @@ endif()
 target_compile_features(01-pcap PRIVATE cxx_std_23)
 
 # Link to PcapPlusPlus
-target_link_libraries(01-pcap PRIVATE Pcap++ Packet++ Common++ Boost::asio)
+target_link_libraries(01-pcap PRIVATE Pcap++ Packet++ Common++)
 
 # Add compile options
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang|AppleClang")
