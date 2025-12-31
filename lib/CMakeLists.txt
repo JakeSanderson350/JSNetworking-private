@@ -1,0 +1,1 @@
+# lib for the projects, here we put all the code that might be shared between projects
