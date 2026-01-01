@@ -1,5 +1,5 @@
 name: License Breach Report
-about: Report a license violation (e.g., someone posting assignment solutions)
+description: Report a license violation (e.g., someone posting assignment solutions)
 title: "[License Breach] "
 labels: [license, breach, urgent]
 assignees: []
