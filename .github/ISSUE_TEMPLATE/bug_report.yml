@@ -1,0 +1,49 @@
+name: Bug Report
+about: Create a report to help us improve
+labels: [bug]
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please fill out the following information to help us reproduce and fix the bug.
+  - type: input
+    id: summary
+    attributes:
+      label: Bug Summary
+      description: Short summary of the bug
+      placeholder: e.g. Crash when running tests
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: How can we reproduce the bug?
+      placeholder: 1. Go to ...\n2. Run ...\n3. See error
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What did you expect to happen?
+      placeholder: The tests should pass without errors.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened?
+      placeholder: The program crashed with error ...
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, compiler, and other relevant details
+      placeholder: e.g. macOS 14.0, GCC 13.2
+    validations:
+      required: false

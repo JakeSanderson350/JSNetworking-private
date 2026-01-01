@@ -1,0 +1,58 @@
+name: License Breach Report
+about: Report a license violation (e.g., someone posting assignment solutions)
+title: "[License Breach] "
+labels: [license, breach, urgent]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please use this template to report any suspected license violations, such as unauthorized sharing or posting of assignment solutions.
+  - type: input
+    id: location
+    attributes:
+      label: Location of Breach
+      description: Where did you find the license breach? (URL, platform, etc.)
+      placeholder: e.g. https://github.com/username/repo
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Describe the breach and provide any relevant evidence or context.
+      placeholder: Please provide as much detail as possible.
+    validations:
+      required: true
+  - type: input
+    id: reporter
+    attributes:
+      label: Your Contact (optional)
+      description: If you wish to be contacted for follow-up, provide your email or GitHub username.
+      placeholder: e.g. your@email.com
+    validations:
+      required: false
+  - type: input
+    id: private-issue
+    attributes:
+      label: Have you created an issue on the other repository requesting it be made private?
+      description: If yes, please provide a link to the issue you created on the offending repository.
+      placeholder: e.g. https://github.com/username/repo/issues/123
+    validations:
+      required: false
+  - type: input
+    id: know-person
+    attributes:
+      label: Do you know the person misusing the repository?
+      description: If yes, please provide details so we can report to the relevant university/college.
+      placeholder: Name, email, or other identifying info (optional)
+    validations:
+      required: false
+  - type: input
+    id: dmca-form
+    attributes:
+      label: Have you filled the DMCA form?
+      description: Have you submitted a takedown request at https://github.com/contact/dmca? (We can do this for you if needed.)
+      placeholder: Yes/No. If yes, please provide any reference number or details.
+    validations:
+      required: false
