@@ -19,4 +19,4 @@ jobs:
       - name: Run doctest tests with CTest
         run: |
           cd build
-          ctest --output-on-failure
+          ctest --output-on-failure -R "01-pcap-tests"
