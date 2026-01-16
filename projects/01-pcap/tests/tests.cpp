@@ -142,33 +142,33 @@ TEST_CASE("Task 1: Basic Packet Statistics") {
     }
 
     SUBCASE("IPv4 packet count") {
-        CHECK_MESSAGE(stats.ipv4Packets == 4065,
-            "Expected 4065 IPv4 packets, got " << stats.ipv4Packets);
+        CHECK_MESSAGE(stats.ipv4Packets == 13185,
+            "Expected 13185 IPv4 packets, got " << stats.ipv4Packets);
     }
 
     SUBCASE("IPv6 packet count") {
-        CHECK_MESSAGE(stats.ipv6Packets == 1283,
-            "Expected 1283 IPv6 packets, got " << stats.ipv6Packets);
+        CHECK_MESSAGE(stats.ipv6Packets == 14943,
+            "Expected 14943 IPv6 packets, got " << stats.ipv6Packets);
     }
 
     SUBCASE("TCP packet count") {
-        CHECK_MESSAGE(stats.tcpPackets == 1726,
-            "Expected 1726 TCP packets, got " << stats.tcpPackets);
+        CHECK_MESSAGE(stats.tcpPackets == 11840,
+            "Expected 11840 TCP packets, got " << stats.tcpPackets);
     }
 
     SUBCASE("UDP packet count") {
-        CHECK_MESSAGE(stats.udpPackets == 2660,
-            "Expected 2660 UDP packets, got " << stats.udpPackets);
+        CHECK_MESSAGE(stats.udpPackets == 12769,
+            "Expected 12769 UDP packets, got " << stats.udpPackets);
     }
 
     SUBCASE("ARP packet count") {
-        CHECK_MESSAGE(stats.arpPackets == 56,
-            "Expected 56 ARP packets, got " << stats.arpPackets);
+        CHECK_MESSAGE(stats.arpPackets == 91,
+            "Expected 91 ARP packets, got " << stats.arpPackets);
     }
 
     SUBCASE("ICMP packet count") {
-        CHECK_MESSAGE(stats.icmpPackets == 45,
-            "Expected 45 ICMP packets, got " << stats.icmpPackets);
+        CHECK_MESSAGE(stats.icmpPackets == 1110,
+            "Expected 1110 ICMP packets, got " << stats.icmpPackets);
     }
 }
 
@@ -185,38 +185,38 @@ TEST_CASE("Task 2: Layer Analysis") {
     MESSAGE("  Layer 4 - ICMP: " << stats.layer4_icmp);
 
     SUBCASE("Layer 2: Ethernet frame count") {
-        CHECK_MESSAGE(stats.ethernetFrames == 5264,
-            "Expected 5264 Ethernet frames, got " << stats.ethernetFrames);
+        CHECK_MESSAGE(stats.ethernetFrames == 36324,
+            "Expected 36324 Ethernet frames, got " << stats.ethernetFrames);
     }
 
     SUBCASE("Layer 3: IPv4 packet count") {
-        CHECK_MESSAGE(stats.layer3_ipv4 == 4065,
-            "Expected 4065 IPv4 packets, got " << stats.layer3_ipv4);
+        CHECK_MESSAGE(stats.layer3_ipv4 == 13185,
+            "Expected 13185 IPv4 packets, got " << stats.layer3_ipv4);
     }
 
     SUBCASE("Layer 3: IPv6 packet count") {
-        CHECK_MESSAGE(stats.layer3_ipv6 == 1283,
-            "Expected 1283 IPv6 packets, got " << stats.layer3_ipv6);
+        CHECK_MESSAGE(stats.layer3_ipv6 == 14943,
+            "Expected 14943 IPv6 packets, got " << stats.layer3_ipv6);
     }
 
     SUBCASE("Layer 3: ARP packet count") {
-        CHECK_MESSAGE(stats.layer3_arp == 56,
-            "Expected 56 ARP packets, got " << stats.layer3_arp);
+        CHECK_MESSAGE(stats.layer3_arp == 91,
+            "Expected 91 ARP packets, got " << stats.layer3_arp);
     }
 
     SUBCASE("Layer 4: TCP segment count") {
-        CHECK_MESSAGE(stats.layer4_tcp == 1726,
-            "Expected 1726 TCP segments, got " << stats.layer4_tcp);
+        CHECK_MESSAGE(stats.layer4_tcp == 11840,
+            "Expected 11840 TCP segments, got " << stats.layer4_tcp);
     }
 
     SUBCASE("Layer 4: UDP datagram count") {
-        CHECK_MESSAGE(stats.layer4_udp == 2660,
-            "Expected 2660 UDP datagrams, got " << stats.layer4_udp);
+        CHECK_MESSAGE(stats.layer4_udp == 12769,
+            "Expected 12769 UDP datagrams, got " << stats.layer4_udp);
     }
 
     SUBCASE("Layer 4: ICMP packet count") {
-        CHECK_MESSAGE(stats.layer4_icmp == 45,
-            "Expected 45 ICMP packets, got " << stats.layer4_icmp);
+        CHECK_MESSAGE(stats.layer4_icmp == 1110,
+            "Expected 1110 ICMP packets, got " << stats.layer4_icmp);
     }
 }
 
