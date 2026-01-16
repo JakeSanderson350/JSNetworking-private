@@ -20,4 +20,4 @@ jobs:
       - name: Run doctest tests with CTest
         run: |
           cd build
-          ctest --output-on-failure -R "02-addressing"
+          ctest --output-on-failure -R 02-addressing-tests
