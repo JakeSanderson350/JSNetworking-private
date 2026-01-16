@@ -51,15 +51,23 @@ BasicStats analyzeBasicStats(const std::string& pcapFile) {
     // TODO: Implement packet counting logic here
     //
     // Example iteration pattern:
-    //   pcpp::IFileReaderDevice* reader = pcpp::IFileReaderDevice::getReader(pcapFile);
-    //   if (reader == nullptr || !reader->open()) return stats;
-    //   pcpp::RawPacket rawPacket;
-    //   while (reader->getNextPacket(rawPacket)) {
-    //       pcpp::Packet parsedPacket(&rawPacket);
-    //       // ... check packet types here ...
-    //   }
-    //   reader->close();
-    //   delete reader;
+    pcpp::IFileReaderDevice* reader = pcpp::IFileReaderDevice::getReader(pcapFile);
+    if (reader == nullptr || !reader->open()) return stats;
+    pcpp::RawPacket rawPacket;
+    while (reader->getNextPacket(rawPacket)) {
+        pcpp::Packet parsedPacket(&rawPacket);
+        // ... check packet types here ...
+        if (parsedPacket.isPacketOfType(pcpp::IPv4)) { stats.ipv4Packets++; }
+        if (parsedPacket.isPacketOfType(pcpp::IPv6)) { stats.ipv6Packets++; }
+        if (parsedPacket.isPacketOfType(pcpp::TCP)) { stats.tcpPackets++; }
+        if (parsedPacket.isPacketOfType(pcpp::UDP)) { stats.udpPackets++; }
+        if (parsedPacket.isPacketOfType(pcpp::ARP)) { stats.arpPackets++; }
+        if (parsedPacket.isPacketOfType(pcpp::ICMP)) { stats.icmpPackets++; }
+
+        stats.totalPackets++;
+    }
+    reader->close();
+    delete reader;
     //
     // Checking packet types (can check multiple per packet):
     //   if (parsedPacket.isPacketOfType(pcpp::IPv4)) { ... }
@@ -69,7 +77,7 @@ BasicStats analyzeBasicStats(const std::string& pcapFile) {
     //   auto* ipv4Layer = parsedPacket.getLayerOfType<pcpp::IPv4Layer>();
     //   if (ipv4Layer != nullptr) { ... }
     //
-    (void)pcapFile; // Remove this line when implementing
+    //(void)pcapFile; // Remove this line when implementing
 
     return stats;
 }
