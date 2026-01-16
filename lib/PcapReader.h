@@ -181,37 +181,54 @@ public:
     }
     
     // Generic getLayerOfType - returns nullptr for unsupported types
-    template<typename T> T* getLayerOfType() { return nullptr; }
+    template<typename T> T* getLayerOfType() const { return nullptr; }
     
-    // Specializations for supported layer types
-    template<> EthernetLayer* getLayerOfType<EthernetLayer>() {
-        return hasEthernet_ ? new EthernetLayer() : nullptr;
-    }
-    
-    template<> IPv4Layer* getLayerOfType<IPv4Layer>() {
-        return hasIPv4_ ? new IPv4Layer() : nullptr;
-    }
-    
-    template<> IPv6Layer* getLayerOfType<IPv6Layer>() {
-        return hasIPv6_ ? new IPv6Layer() : nullptr;
-    }
-    
-    template<> ARPLayer* getLayerOfType<ARPLayer>() {
-        return hasARP_ ? new ARPLayer() : nullptr;
-    }
-    
-    template<> TCPLayer* getLayerOfType<TCPLayer>() {
-        return hasTCP_ ? new TCPLayer() : nullptr;
-    }
-    
-    template<> UDPLayer* getLayerOfType<UDPLayer>() {
-        return hasUDP_ ? new UDPLayer() : nullptr;
-    }
-    
-    template<> ICMPLayer* getLayerOfType<ICMPLayer>() {
-        return hasICMP_ ? new ICMPLayer() : nullptr;
-    }
+    // Friend functions to allow specializations
+    template<typename T> friend T* getLayerOfType(const Packet& packet);
 };
+
+// Helper functions for getLayerOfType<T>(packet)
+// Generic template - returns nullptr for unsupported types
+template<typename T>
+inline T* getLayerOfType(const Packet&) { 
+    return nullptr; 
+}
+
+// Specializations for supported layer types
+template<>
+inline EthernetLayer* getLayerOfType<EthernetLayer>(const Packet& packet) {
+    return packet.hasEthernet_ ? new EthernetLayer() : nullptr;
+}
+
+template<>
+inline IPv4Layer* getLayerOfType<IPv4Layer>(const Packet& packet) {
+    return packet.hasIPv4_ ? new IPv4Layer() : nullptr;
+}
+
+template<>
+inline IPv6Layer* getLayerOfType<IPv6Layer>(const Packet& packet) {
+    return packet.hasIPv6_ ? new IPv6Layer() : nullptr;
+}
+
+template<>
+inline ARPLayer* getLayerOfType<ARPLayer>(const Packet& packet) {
+    return packet.hasARP_ ? new ARPLayer() : nullptr;
+}
+
+template<>
+inline TCPLayer* getLayerOfType<TCPLayer>(const Packet& packet) {
+    return packet.hasTCP_ ? new TCPLayer() : nullptr;
+}
+
+template<>
+inline UDPLayer* getLayerOfType<UDPLayer>(const Packet& packet) {
+    return packet.hasUDP_ ? new UDPLayer() : nullptr;
+}
+
+template<>
+inline ICMPLayer* getLayerOfType<ICMPLayer>(const Packet& packet) {
+    return packet.hasICMP_ ? new ICMPLayer() : nullptr;
+}
 
 // PCAP/PCAPNG file reader
 class IFileReaderDevice {
